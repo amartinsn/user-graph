@@ -205,20 +205,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cadun-graph-finagle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user-graph" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -503,12 +489,12 @@
       <workItem from="1392942619213" duration="14240000" />
       <workItem from="1392989487420" duration="42000" />
       <workItem from="1392990090052" duration="386000" />
-      <workItem from="1393017687379" duration="89000" />
+      <workItem from="1393017687379" duration="210000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28610000" />
+    <option name="totallyTimeSpent" value="28731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-178" y="-1178" width="1600" height="1178" extended-state="6" />
