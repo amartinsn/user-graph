@@ -19,17 +19,6 @@ class UserController extends Controller {
     } yield (render.json(users))
   }
 
-  get("/users/:id") { request =>
-    val id = request.routeParams.get("id")
-
-    val result = id match {
-      case Some(id) => UserRepository.find(id.toLong)
-      case None => Future.exception(new IllegalArgumentException("User id not provided"))
-    }
-
-    result.map(user => render.json(user))
-  }
-
   post("/users") {
     request =>
       val user: Map[String, String] = JSON.parseFull(request.getContentString()).get.asInstanceOf[Map[String, String]]

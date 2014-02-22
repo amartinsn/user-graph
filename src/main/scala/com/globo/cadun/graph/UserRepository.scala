@@ -1,6 +1,6 @@
 package com.globo.cadun.graph
 
-import org.anormcypher.Cypher
+import org.anormcypher._
 import com.twitter.util.Future
 
 /**
@@ -16,7 +16,7 @@ object UserRepository {
   }
 
   def all() = {
-    val req = Cypher("""match (n:User) return n.id as id, n.username as username, n.email as email, n.name as name;""")
+    val req = Cypher("""match (n:User) return n;""")
     Future(
       req().map(row => {
         User(row[Long]("id"), row[String]("username"), row[String]("email"), row[String]("name"))
@@ -24,23 +24,45 @@ object UserRepository {
     )
   }
 
-  def find(id: Long) = {
-    val req = Cypher("""match (u:User) where u.id={id} return u.id as id, u.username as username, u.email as email, u.name as name;""")
-    Future(
-      req.on("id"->id).single()
-//        User(row[Long]("id"), row[String]("username"), row[String]("email"), row[String]("name"))
+  def makeFriends(user: User, otherUser: User) = {
+    Cypher(
+      """
+        match (u:User {id: {userId}}), (o:User {id: {otherUserId}})
+        create (u)-[:friends]->(o);
+      """).on("userId" -> user.id, "otherUserId" -> otherUser.id)()
+  }
 
-    )
+  def unfriend(user: User, otherUser: User) = {
+    Cypher("""match (n:User{ id:{userId} })-[r:friends]-(o:User{ id:{otherUserId} }) delete r""")
+      .on("userId"->user.id, "otherUserId"->otherUser.id)()
+  }
+
+  def listFriendsOf(user: User) = {
+    Cypher("""match (u:User{ id:{userId} })-[:friends]-(f) return f.id as id, f.name as name, f.email as email, f.username as username""")
+      .on("userId"->user.id)().map(row => {
+        User(row[Long]("id"), row[String]("username"), row[String]("email"), row[String]("name"))
+      }
+    ).toList
   }
 
   def deleteAll() = {
-    Future(
-      Cypher("""match (n) optional match n-[r]-() delete n, r;""")()
-    )
+    Future( Cypher("""match (n) optional match n-[r]-() delete n, r;""")() )
   }
 
   def main(args: Array[String]) {
-    val req = Cypher("""match (u:User) where u.id={id} return u.id as id, u.username as username, u.email as email, u.name as name;""")
-    req.on("id"->id).
+    val alex = User(1, null, null, null)
+    val paul = User(2, null, null, null)
+    val cacau = User(3, null, null, null)
+    val rodrigo = User(4, null, null, null)
+
+    UserRepository.makeFriends(alex, cacau)
+    UserRepository.unfriend(alex, cacau)
+
+    println("Alex's friends: " + UserRepository.listFriendsOf(alex))
+    println("Cacau's friends: " + UserRepository.listFriendsOf(cacau))
+    println("Paul's friends: " + UserRepository.listFriendsOf(paul))
+    println("Rodrigo's friends: " + UserRepository.listFriendsOf(rodrigo))
+
+    System.exit(1)
   }
 }
