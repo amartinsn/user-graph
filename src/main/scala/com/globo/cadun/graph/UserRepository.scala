@@ -28,7 +28,7 @@ object UserRepository {
     Cypher(
       """
         match (u:User {id: {userId}}), (o:User {id: {otherUserId}})
-        create (u)-[:friends]->(o);
+        create unique (u)-[:friends]->(o);
       """).on("userId" -> user.id, "otherUserId" -> otherUser.id)()
   }
 
@@ -51,17 +51,10 @@ object UserRepository {
 
   def main(args: Array[String]) {
     val alex = User(1, null, null, null)
-    val paul = User(2, null, null, null)
     val cacau = User(3, null, null, null)
-    val rodrigo = User(4, null, null, null)
 
     UserRepository.makeFriends(alex, cacau)
-    UserRepository.unfriend(alex, cacau)
-
-    println("Alex's friends: " + UserRepository.listFriendsOf(alex))
-    println("Cacau's friends: " + UserRepository.listFriendsOf(cacau))
-    println("Paul's friends: " + UserRepository.listFriendsOf(paul))
-    println("Rodrigo's friends: " + UserRepository.listFriendsOf(rodrigo))
+    UserRepository.makeFriends(alex, cacau)
 
     System.exit(1)
   }
