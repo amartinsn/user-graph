@@ -1,4 +1,5 @@
-## Creating a New User
+## Creating a user node
+(Ready!)
 
 ```
 HTTP POST /users
@@ -10,22 +11,35 @@ HTTP POST /users
 }
 ```
 
-
-## Creating a Friendship Between Two Users
+## Creating a friendship
+(Ready!)
 
 ```
 HTTP POST /friendships/:userId-:otherUserId
 ```
 
-
-## Deleting a Friendship Between Two Users
+## Deleting a friendship
+(Ready!)
 
 ```
 HTTP DELETE /friendships/:userId-:otherUserId
 ```
 
+## Registering user preferences
+(WIP)
 
-## Registering User Events
+```
+HTTP POST /users/:id/preferences
+{
+    "supports": {
+        "type": "SoccerTeam",
+        "name": "Flamengo"
+    }
+}
+```
+
+## Registering user events
+(TODO)
 
 ```
 HTTP POST /users/:id/events
@@ -64,15 +78,19 @@ HTTP POST /users/:id/events
 ]
 ```
 
+# Querying The Graph
 
-## Registering User Preferences
+## List of users with a given preference
+(WIP)
 
 ```
-HTTP POST /users/:id/preferences
-{
-    "supports": {
-        "type": "SoccerTeam",
-        "name": "Flamengo"
-    }
-}
+HTTP GET /users/supports/SoccerTeam?name=flamengo
+```
+
+
+## List of friends with a given preference
+(WIP)
+
+```
+HTTP GET /users/:id/friends/supports/SoccerTeam?name=flamengo
 ```
