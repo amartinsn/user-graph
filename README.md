@@ -1,4 +1,4 @@
-## Creating A New User Node
+## Creating a New User
 
 ```
 HTTP POST /users
@@ -11,14 +11,14 @@ HTTP POST /users
 ```
 
 
-## Creating A Friendship Between Two Users
+## Creating a Friendship Between Two Users
 
 ```
 HTTP POST /friendships/:userId-:otherUserId
 ```
 
 
-## Deleting A Friendship Between Two Users
+## Deleting a Friendship Between Two Users
 
 ```
 HTTP DELETE /friendships/:userId-:otherUserId
