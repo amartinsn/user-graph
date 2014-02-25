@@ -89,9 +89,9 @@ HTTP GET /users/supports/SoccerTeam?name=flamengo
 ```
 
 
-## List of friends with a given preference
+## List of friends who follows a given Section
 (WIP)
 
 ```
-HTTP GET /users/:id/friends/supports/SoccerTeam?name=flamengo
+HTTP GET /users/:id/friends/follows/section?name=Politica
 ```
