@@ -1,7 +1,6 @@
 # Feeding The Graph
 
 ## Creating a user node
-(Ready!)
 
 ```
 HTTP POST /users
@@ -14,14 +13,12 @@ HTTP POST /users
 ```
 
 ## Creating a friendship
-(Ready!)
 
 ```
 HTTP POST /friendships/:userId-:otherUserId
 ```
 
 ## Deleting a friendship
-(Ready!)
 
 ```
 HTTP DELETE /friendships/:userId-:otherUserId
