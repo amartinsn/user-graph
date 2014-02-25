@@ -1,7 +1,8 @@
-package com.globo.cadun.graph
+package com.globo.cadun.graph.repositories
 
 import org.anormcypher._
 import com.twitter.util.Future
+import com.globo.cadun.graph.User
 
 /**
  * Created by amartins on 2/18/14.
@@ -23,14 +24,6 @@ object UserRepository {
       }).toList
     )
   }
-
-//  def createRelation(something: Any, somethingElse: Any, relationName: String) = {
-//    Cypher(
-//      """
-//        match (u:User {id: {userId}}), (o:User {id: {otherUserId}})
-//        create unique (u)-[:friends]->(o);
-//      """).on("userId" -> user.id, "otherUserId" -> otherUser.id)()
-//  }
 
   def makeFriends(userId: Long, otherUserId: Long) = {
     Future(
@@ -61,15 +54,4 @@ object UserRepository {
   def deleteAll() = {
     Future( Cypher("""match (n) optional match n-[r]-() delete n, r;""")() )
   }
-
-//  def main(args: Array[String]) {
-//    val alex = User(1, null, null, null)
-//    val cacau = User(3, null, null, null)
-//
-////    UserRepository.makeFriends(alex.id, cacau.id)
-////    UserRepository.makeFriends(alex.id, cacau.id)
-//    println(UserRepository.listFriendsOf(alex))
-//
-//    System.exit(1)
-//  }
 }

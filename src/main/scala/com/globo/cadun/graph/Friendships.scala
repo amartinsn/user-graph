@@ -2,6 +2,7 @@ package com.globo.cadun.graph
 
 import com.twitter.finatra.Controller
 import com.twitter.util.Future
+import com.globo.cadun.graph.repositories.UserRepository
 
 /**
  * Created by amartins on 2/23/14.

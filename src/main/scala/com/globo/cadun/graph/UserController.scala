@@ -3,6 +3,7 @@ package com.globo.cadun.graph
 import com.twitter.finatra.Controller
 import com.twitter.util.Future
 import scala.util.parsing.json.{JSONType, JSON}
+import com.globo.cadun.graph.repositories.UserRepository
 
 /**
  * Created by amartins on 2/20/14.

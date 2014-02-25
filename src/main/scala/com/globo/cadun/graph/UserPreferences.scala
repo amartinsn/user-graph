@@ -8,6 +8,9 @@ import com.twitter.finatra.Controller
 class UserPreferences extends Controller {
 
 //  post("/users/:id/preferences") { request =>
+//    UserPreferences.create
+//    Future(
 //
+//    )
 //  }
 }
