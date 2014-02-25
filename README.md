@@ -33,9 +33,11 @@ HTTP DELETE /friendships/:userId-:otherUserId
 ```
 HTTP POST /users/:id/preferences
 {
-    "supports": {
-        "type": "SoccerTeam",
-        "name": "Flamengo"
+    "follows": {
+        "section": {
+            "name": "Politica",
+            "url": "http://semantica.globo.com/G1/Politica"
+        }
     }
 }
 ```

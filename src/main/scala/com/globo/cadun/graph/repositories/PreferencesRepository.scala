@@ -10,23 +10,23 @@ object PreferencesRepository {
   //  HTTP POST /users/:id/preferences
   //    { "follows": { "section": { "name": "Cars" } } }
 
-  def create(userId: Long, entityType: String, name: String) = {
-    Cypher(
-      """
-        MERGE (ee:{entityType}{ name:{name} })
+  def create(userId: Long, preferenceName: String, entityType: String, entityName: String) = {
+    val query = s"""MERGE (ee:$entityType{ name:{entityName} })
         WITH ee
         MATCH (u:User{ id:{userId} })
-        MERGE (u)-[:{relationName}]->(ee)
-      """).on("entityType" -> entityType, "name" -> name, "userId" -> userId, "relationName" -> "follows")()
+        MERGE (u)-[:$preferenceName]->(ee)"""
+    Cypher(query).on("entityName" -> entityName, "userId" -> userId)()
   }
 
-  def delete(userId: Long, entityType: String, name: String) = {
-    Cypher("""match (u:User{ id:{userId} })-[r:{relationName}]-(e:Section{ name:{name} }) delete r""")
-      .on("userId" -> userId, "relationName" -> "follows", "name" -> name)()
+  def delete(userId: Long, preferenceName: String, entityType: String, entityName: String) = {
+    val query = s"match (u:User{ id:{userId} })-[r:$preferenceName]-(e:$entityType{ name:{entityName} }) delete r"
+    Cypher(query).on("userId" -> userId, "entityName" -> entityName)()
   }
 
   def main(args: Array[String]) {
-    PreferencesRepository.delete(3, "Section", "Cars")
+    PreferencesRepository.create(3, "follows", "Section", "Cars")
+    PreferencesRepository.create(4, "follows", "Section", "Cars")
+//    PreferencesRepository.delete(3, "follows", "Section", "Cars")
 
     System.exit(1)
   }
