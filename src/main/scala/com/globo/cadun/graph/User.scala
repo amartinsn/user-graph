@@ -1,14 +1,14 @@
-package com.globo.cadun.graph.repositories
+package com.globo.cadun.graph
 
-import org.anormcypher._
 import com.twitter.util.Future
-import com.globo.cadun.graph.User
+import org.anormcypher.Cypher
 
 /**
- * Created by amartins on 2/18/14.
+ * Created by amartins on 2/25/14.
  */
-object UserRepository {
+case class User(id: Long, username: String, email: String, name: String)
 
+object User {
   def create(id: Long, username: String, email: String, name: String) = {
     Future(
       Cypher( """create (u:User { id:{id}, username: {username}, email: {email}, name: {name} });""")

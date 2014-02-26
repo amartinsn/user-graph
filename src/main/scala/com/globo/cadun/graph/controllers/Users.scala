@@ -1,14 +1,14 @@
-package com.globo.cadun.graph
+package com.globo.cadun.graph.controllers
 
 import com.twitter.finatra.Controller
 import com.twitter.util.Future
-import scala.util.parsing.json.{JSONType, JSON}
-import com.globo.cadun.graph.repositories.UserRepository
+import scala.util.parsing.json.JSON
+import com.globo.cadun.graph.User
 
 /**
  * Created by amartins on 2/20/14.
  */
-class UserController extends Controller {
+class Users extends Controller {
 
   get("/") { request =>
     render.plain("welcome to CadunGraph").toFuture
@@ -16,7 +16,7 @@ class UserController extends Controller {
 
   get("/users") {
     request => for {
-      users <- UserRepository.all()
+      users <- User.all()
     } yield (render.json(users))
   }
 
@@ -32,7 +32,7 @@ class UserController extends Controller {
       } yield ((id, name, email, username))
 
       val result = param match {
-        case Some((id, name, email, username)) => UserRepository.create(id.toLong, username, email, name)
+        case Some((id, name, email, username)) => User.create(id.toLong, username, email, name)
         case None => Future.exception(new IllegalArgumentException("Unknown user"))
       }
 

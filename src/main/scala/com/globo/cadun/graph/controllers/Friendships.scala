@@ -1,8 +1,8 @@
-package com.globo.cadun.graph
+package com.globo.cadun.graph.controllers
 
 import com.twitter.finatra.Controller
 import com.twitter.util.Future
-import com.globo.cadun.graph.repositories.UserRepository
+import com.globo.cadun.graph.User
 
 /**
  * Created by amartins on 2/23/14.
@@ -12,7 +12,7 @@ class Friendships extends Controller {
     val userId = request.routeParams.get("id")
 
     val result = userId match {
-      case Some(userId) => UserRepository.listFriendsOf(userId.toLong)
+      case Some(userId) => User.listFriendsOf(userId.toLong)
       case None => Future.exception(new IllegalArgumentException("User id not provided"))
     }
 
@@ -26,7 +26,7 @@ class Friendships extends Controller {
     } yield ((userId, otherUserId))
 
     val result = friendship match {
-      case Some((userId, otherUserId)) => UserRepository.makeFriends(userId.toLong, otherUserId.toLong)
+      case Some((userId, otherUserId)) => User.makeFriends(userId.toLong, otherUserId.toLong)
       case None => Future.exception(new IllegalArgumentException("Invalid friendship representation"))
     }
 
@@ -40,7 +40,7 @@ class Friendships extends Controller {
     } yield ((userId, otherUserId))
 
     val result = friendship match {
-      case Some((userId, otherUserId)) => UserRepository.unfriend(userId.toLong, otherUserId.toLong)
+      case Some((userId, otherUserId)) => User.unfriend(userId.toLong, otherUserId.toLong)
       case None => Future.exception(new IllegalArgumentException("Invalid friendship representation"))
     }
 

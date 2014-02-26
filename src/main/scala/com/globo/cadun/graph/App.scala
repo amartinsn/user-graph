@@ -1,13 +1,11 @@
 package com.globo.cadun.graph
 
 import com.twitter.finatra.FinatraServer
-
-case class User(id: Long, username: String, email: String, name: String)
-case class Preference(prefType: String, name: String)
+import com.globo.cadun.graph.controllers.{Users, Preferences, Friendships}
 
 object App extends FinatraServer {
-  register(new UserController())
+  register(new Users())
   register(new Friendships())
-  register(new UserPreferences())
+  register(new Preferences())
 }
 
