@@ -6,7 +6,19 @@ import org.anormcypher.Cypher
 /**
  * Created by amartins on 2/25/14.
  */
-case class User(id: Long, username: String, email: String, name: String)
+case class User(id: Long, username: String, email: String, name: String) {
+  def friend(user: User) = {
+    User.makeFriends(id, user.id)
+  }
+
+  def unfriend(user: User) = {
+    User.unfriend(id, user.id)
+  }
+
+  def friends() ={
+    User.listFriendsOf(id)
+  }
+}
 
 object User {
   def create(id: Long, username: String, email: String, name: String) = {
