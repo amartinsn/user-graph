@@ -18,8 +18,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="scala-library" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.9.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.scala-tools.testing:specs_2.9.3:1.6.9" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.9.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.scalatest:scalatest_2.9.2:1.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.twitter:finatra_2.10:1.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.10.3" level="project" />
     <orderEntry type="library" name="Maven: com.twitter:twitter-server_2.10:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.twitter:finagle-core_2.10:6.11.1" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty:3.8.0.Final" level="project" />
